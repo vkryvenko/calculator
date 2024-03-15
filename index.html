@@ -1,112 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Calculator</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
 
-        h1 {
-            margin-bottom: 20px;
-            color: #333;
-        }
+      h1 {
+        margin-bottom: 20px;
+        color: #333;
+      }
 
-        h2 {
-            padding: 20px;
-            font-size: 24px;
-            border: 2px solid #333;
-            border-radius: 5px;
-            background-color: #fff;
-            text-align: center;
-            width: 400px;
-            margin-bottom: 20px;
-        }
+      h2 {
+        padding: 20px;
+        font-size: 24px;
+        border: 2px solid #333;
+        border-radius: 5px;
+        background-color: #fff;
+        text-align: center;
+        width: 400px;
+        margin-bottom: 20px;
+      }
 
-        .button-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
+      .button-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
 
-        button {
-            width: 100%;
-            padding: 20px;
-            background-color: #97e7e8;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+      button {
+        width: 100%;
+        padding: 20px;
+        background-color: #97e7e8;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
 
-        button:active {
-            background-color: #76c7c8;
-        }
+      button:active {
+        background-color: #76c7c8;
+      }
     </style>
-</head>
-<body>
-    <h2  aria-label="result window" id="calculationId"></h2>
+  </head>
+  <body>
+    <h1>Simple Calculator</h1>
+    <h2 aria-label="result window" id="calculationId"></h2>
 
     <div class="button-container">
-        <button tabindex="1" aria-label="Number 1" onclick="record('1')" aria-describedby="instructions">1</button>
-        <button tabindex="2" aria-label="Number 2" onclick="record('2')" aria-describedby="instructions">2</button>
-        <button tabindex="3" aria-label="Number 3" onclick="record('3')" aria-describedby="instructions">3</button>
-        <button tabindex="11" aria-label="Addition" onclick="record('+')" aria-describedby="instructions">+</button>
-    
-        <button tabindex="4" aria-label="Number 4" onclick="record('4')" aria-describedby="instructions">4</button>
-        <button tabindex="5" aria-label="Number 5" onclick="record('5')" aria-describedby="instructions">5</button>
-        <button tabindex="6" aria-label="Number 6" onclick="record('6')" aria-describedby="instructions">6</button>
-        <button tabindex="12" aria-label="Subtraction" onclick="record('-')" aria-describedby="instructions">-</button>
-    
-        <button tabindex="7" aria-label="Number 7" onclick="record('7')" aria-describedby="instructions">7</button>
-        <button tabindex="8" aria-label="Number 8" onclick="record('8')" aria-describedby="instructions">8</button>
-        <button tabindex="9" aria-label="Number 9" onclick="record('9')" aria-describedby="instructions">9</button>
-        <button tabindex="13" aria-label="Multiplication" onclick="record('*')" aria-describedby="instructions">*</button>
-    
-        <button tabindex="10" aria-label="Number 0" onclick="record('0')" aria-describedby="instructions">0</button>
-        <button tabindex="14" aria-label="Division" onclick="record('/')" aria-describedby="instructions">/</button>
-        <button tabindex="15" aria-label="Equals" onclick="calculate()" aria-describedby="instructions">=</button>
+      <button
+        tabindex="1"
+        aria-label="Number 1"
+        onclick="record('1')"
+        aria-describedby="instructions"
+      >
+        1
+      </button>
+      <button
+        tabindex="2"
+        aria-label="Number 2"
+        onclick="record('2')"
+        aria-describedby="instructions"
+      >
+        2
+      </button>
+      <button
+        tabindex="3"
+        aria-label="Number 3"
+        onclick="record('3')"
+        aria-describedby="instructions"
+      >
+        3</button
+      ><button
+        tabindex="11"
+        aria-label="Addition"
+        onclick="record('+')"
+        aria-describedby="instructions"
+      >
+        +
+      </button>
+
+      <button
+        tabindex="4"
+        aria-label="Number 4"
+        onclick="record('4')"
+        aria-describedby="instructions"
+      >
+        4
+      </button>
+      <button
+        tabindex="5"
+        aria-label="Number 5"
+        onclick="record('5')"
+        aria-describedby="instructions"
+      >
+        5
+      </button>
+      <button
+        tabindex="6"
+        aria-label="Number 6"
+        onclick="record('6')"
+        aria-describedby="instructions"
+      >
+        6
+      </button>
+      <button
+        tabindex="12"
+        aria-label="Subtraction"
+        onclick="record('-')"
+        aria-describedby="instructions"
+      >
+        -
+      </button>
+
+      <button
+        tabindex="7"
+        aria-label="Number 7"
+        onclick="record('7')"
+        aria-describedby="instructions"
+      >
+        7
+      </button>
+      <button
+        tabindex="8"
+        aria-label="Number 8"
+        onclick="record('8')"
+        aria-describedby="instructions"
+      >
+        8
+      </button>
+      <button
+        tabindex="9"
+        aria-label="Number 9"
+        onclick="record('9')"
+        aria-describedby="instructions"
+      >
+        9
+      </button>
+      <button
+        tabindex="13"
+        aria-label="Multiplication"
+        onclick="record('*')"
+        aria-describedby="instructions"
+      >
+        *
+      </button>
+
+      <button
+        tabindex="10"
+        aria-label="Number 0"
+        onclick="record('0')"
+        aria-describedby="instructions"
+      >
+        0
+      </button>
+      <button
+        tabindex="14"
+        aria-label="Division"
+        onclick="record('/')"
+        aria-describedby="instructions"
+      >
+        /
+      </button>
+      <button
+        tabindex="15"
+        aria-label="Equals"
+        onclick="calculate()"
+        aria-describedby="instructions"
+      >
+        =
+      </button>
     </div>
-    
+
     <script>
-        document.addEventListener("keydown", (event) => {
-            if (event.key === "Shift" || even.key === "Tab") {
-                return;
-            } else if (event.key === "=") {
-                calculate();
-            } else if (event.key === "+") {
-                record("+");
-            } else if (event.key === "*") {
-                record("*");
-            } else {
-                record(event.key);
-            }
-        });
-
-        let calculation = '';
-
-        function calculate() {
-            calculation += '=' + eval(calculation);
-            document.getElementById("calculationId").innerHTML = calculation;
-            calculation = '';
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Shift" || event.key === "Tab") {
+          return;
+        } else if (event.key === "=") {
+          calculate();
+        } else if (event.key === "+") {
+          record("+");
+        } else if (event.key === "*") {
+          record("*");
+        } else {
+          record(event.key);
         }
+      });
 
-        function record(clickedValue) {
-            calculation += clickedValue;
-            document.getElementById("calculationId").innerHTML = calculation;
-        }
+      let calculation = "";
+
+      function calculate() {
+        calculation += "=" + eval(calculation);
+        document.getElementById("calculationId").innerHTML = calculation;
+        calculation = "";
+      }
+
+      function record(clickedValue) {
+        calculation += clickedValue;
+        document.getElementById("calculationId").innerHTML = calculation;
+      }
     </script>
-</body>
+  </body>
 </html>
