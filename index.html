@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Calculator</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      h2 {
+        padding: 20px;
+        font-size: 24px;
+        border: 2px solid #333;
+        border-radius: 5px;
+        background-color: #fff;
+        text-align: center;
+        width: 400px;
+        margin-bottom: 20px;
+      }
+
+      .button-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+
+      button {
+        width: 100%;
+        padding: 20px;
+        background-color: #97e7e8;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:active {
+        background-color: #76c7c8;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Simple Calculator</h1>
+    <h2 aria-label="result window" id="calculationId"></h2>
+
+    <div class="button-container" id="buttonContainer"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const buttonContainer = document.getElementById("buttonContainer");
+        const buttonsData = [
+          { label: "1", value: "1" },
+          { label: "2", value: "2" },
+          { label: "3", value: "3" },
+          { label: "+", value: "+" },
+          { label: "4", value: "4" },
+          { label: "5", value: "5" },
+          { label: "6", value: "6" },
+          { label: "-", value: "-" },
+          { label: "7", value: "7" },
+          { label: "8", value: "8" },
+          { label: "9", value: "9" },
+          { label: "*", value: "*" },
+          { label: "0", value: "0" },
+          { label: "/", value: "/" },
+          { label: "=", value: "=" },
+          { label: "(", value: "(" },
+          { label: ")", value: ")" },
+          { label: "C", value: "clear" }, // Clear button
+        ];
+        buttonsData.forEach(({ label, value }, index) => {
+          const button = document.createElement("button");
+          button.setAttribute("tabindex", index + 1);
+          button.setAttribute("aria-label", label);
+          button.textContent = label;
+          if (value === "=") {
+            button.addEventListener("click", () => calculate());
+          } else if (value === "clear") {
+            // Event listener for the clear button
+            button.addEventListener("click", () => clear());
+          } else {
+            button.addEventListener("click", () => record(value));
+          }
+          buttonContainer.appendChild(button);
+        });
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Shift" || event.key === "Tab") {
+          return;
+        } else if (event.key === "=") {
+          calculate();
+        } else if (event.key === "+") {
+          record("+");
+        } else if (event.key === "*") {
+          record("*");
+        } else if (event.key === "c" || event.key === "C") {
+          // Listen for "C" key for clearing
+          clear();
+        } else if (event.key === "Backspace") {
+          // Listen for "Backspace" key for clearing
+          clear();
+        } else {
+          record(event.key);
+        }
+      });
+
+      let calculation = "";
+
+      function calculate() {
+        try {
+          const result = evaluateExpression(calculation);
+          document.getElementById("calculationId").innerHTML =
+            calculation + "=" + result;
+          calculation = result.toString();
+        } catch (error) {
+          document.getElementById("calculationId").innerHTML = "Error";
+          calculation = "";
+        }
+      }
+
+      function evaluateExpression(expression) {
+        // Replace occurrences of "sin(" and "cos(" with corresponding Math.sin() and Math.cos() calls
+        expression = expression
+          .replace(/sin\(/g, "Math.sin(")
+          .replace(/cos\(/g, "Math.cos(");
+
+        // Now evaluate the modified expression
+        return eval(expression);
+      }
+
+      function record(clickedValue) {
+        if (clickedValue === "(" || clickedValue === ")") {
+          calculation += clickedValue;
+        } else {
+          calculation += clickedValue;
+        }
+        document.getElementById("calculationId").innerHTML = calculation;
+      }
+
+      function clear() {
+        calculation = ""; // Clear the calculation
+        document.getElementById("calculationId").innerHTML = ""; // Clear the display
+      }
+    </script>
+  </body>
+</html>
